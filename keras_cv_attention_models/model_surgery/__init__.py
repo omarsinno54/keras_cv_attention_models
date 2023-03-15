@@ -1,4 +1,4 @@
-from keras_cv_attention_models.model_surgery.model_surgery import (
+from ..model_surgery.model_surgery import (
     SAMModel,
     DropConnect,
     add_l2_regularizer_2_model,
