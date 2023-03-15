@@ -1,6 +1,6 @@
 import os
 import time
-import keras_cv_attention_models
+# import keras_cv_attention_models
 from tensorflow import keras
 from ..imagenet import callbacks, losses
 from .. import model_surgery
@@ -146,18 +146,18 @@ def init_model(model=None, input_shape=(224, 224, 3), num_classes=1000, pretrain
         kwargs.update({"input_shape": input_shape})  # Use model default input_shape if not specified
     print(">>>> init_model kwargs:", kwargs)
 
-    model_name = model.strip().split(".")
-    if len(model_name) == 1:
-        model = getattr(keras.applications, model_name[0])(classes=num_classes, weights=pretrained, **kwargs)
-    else:
-        model_class = getattr(getattr(keras_cv_attention_models, model_name[0]), model_name[1])
-        model = model_class(num_classes=num_classes, pretrained=pretrained, **kwargs)
-    print(">>>> Built model name:", model.name)
+    # model_name = model.strip().split(".")
+    # if len(model_name) == 1:
+    #     model = getattr(keras.applications, model_name[0])(classes=num_classes, weights=pretrained, **kwargs)
+    # else:
+    #     model_class = getattr(getattr(keras_cv_attention_models, model_name[0]), model_name[1])
+    #     model = model_class(num_classes=num_classes, pretrained=pretrained, **kwargs)
+    # print(">>>> Built model name:", model.name)
 
-    if model_name[0] == "aotnet" and pretrained is not None and pretrained.endswith(".h5"):
-        # Currently aotnet not loading from pretrained...
-        print(">>>> Load pretrained from:", pretrained)
-        model.load_weights(pretrained, by_name=True, skip_mismatch=True)
+    # if model_name[0] == "aotnet" and pretrained is not None and pretrained.endswith(".h5"):
+    #     # Currently aotnet not loading from pretrained...
+    #     print(">>>> Load pretrained from:", pretrained)
+    #     model.load_weights(pretrained, by_name=True, skip_mismatch=True)
     return model
 
 
