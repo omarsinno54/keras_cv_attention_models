@@ -1,6 +1,6 @@
 import numpy as np
-from keras_cv_attention_models import backend
-from keras_cv_attention_models.backend import layers, models, functional, initializers, image_data_format
+from . import backend
+from .backend import layers, models, functional, initializers, image_data_format
 
 BATCH_NORM_DECAY = 0.9
 BATCH_NORM_EPSILON = 1e-5
@@ -95,7 +95,7 @@ def activation_by_name(inputs, activation="relu", name=None):
     elif activation_lower == ("squaredrelu") or activation_lower == ("squared_relu"):
         return functional.pow(functional.relu(inputs), 2)  # Squared ReLU: https://arxiv.org/abs/2109.08668
     elif activation_lower == ("starrelu") or activation_lower == ("star_relu"):
-        from keras_cv_attention_models.nfnets.nfnets import ZeroInitGain
+        from ..nfnets.nfnets import ZeroInitGain
 
         # StarReLU: s * relu(x) ** 2 + b
         return ZeroInitGain(use_bias=True, weight_init_value=1.0, name=layer_name)(functional.pow(functional.relu(inputs), 2))
@@ -674,7 +674,7 @@ class PreprocessInput:
 
 
 def add_pre_post_process(model, rescale_mode="tf", input_shape=None, post_process=None):
-    from keras_cv_attention_models.imagenet.eval_func import decode_predictions
+    from .imagenet.eval_func import decode_predictions
 
     input_shape = model.input_shape[1:] if input_shape is None else input_shape
     model.preprocess_input = PreprocessInput(input_shape, rescale_mode=rescale_mode)

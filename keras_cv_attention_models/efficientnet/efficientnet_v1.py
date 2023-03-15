@@ -3,7 +3,7 @@ Creates a EfficientNetV1 Model as defined in: EfficientNetV1: Self-training with
 arXiv preprint arXiv:1911.04252.
 """
 import math
-from keras_cv_attention_models.efficientnet.efficientnet_v2 import EfficientNetV2
+from ..efficientnet.efficientnet_v2 import EfficientNetV2
 
 
 def get_expanded_width_depth(width, depth, fix_head_stem=False):

@@ -2,8 +2,8 @@ import os
 import time
 import keras_cv_attention_models
 from tensorflow import keras
-from keras_cv_attention_models.imagenet import callbacks, losses
-from keras_cv_attention_models import model_surgery
+from ..imagenet import callbacks, losses
+from .. import model_surgery
 
 GLOBAL_STRATEGY = None
 
@@ -128,7 +128,7 @@ def init_model(model=None, input_shape=(224, 224, 3), num_classes=1000, pretrain
 
     if model.startswith("timm."):  # model like: timm.models.resmlp_12_224
         import timm
-        from keras_cv_attention_models.imagenet.eval_func import TorchModelInterf
+        from ..imagenet.eval_func import TorchModelInterf
 
         print(">>>> Timm model provided:", model)
         timm_model_name = ".".join(model.split(".")[2:])

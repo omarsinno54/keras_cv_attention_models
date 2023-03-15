@@ -1,6 +1,6 @@
 import numpy as np
-from keras_cv_attention_models import backend
-from keras_cv_attention_models.backend import layers, models, functional, image_data_format, initializers
+from .. import backend
+from ..backend import layers, models, functional, image_data_format, initializers
 
 """ Convert and replacing """
 

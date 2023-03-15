@@ -1,4 +1,4 @@
-from keras_cv_attention_models.efficientnet.efficientnet_v2 import (
+from ..efficientnet.efficientnet_v2 import (
     EfficientNetV2,
     EfficientNetV2B0,
     EfficientNetV2B1,
@@ -11,7 +11,7 @@ from keras_cv_attention_models.efficientnet.efficientnet_v2 import (
     EfficientNetV2L,
     EfficientNetV2XL,
 )
-from keras_cv_attention_models.efficientnet.efficientnet_v1 import (
+from ..efficientnet.efficientnet_v1 import (
     EfficientNetV1,
     EfficientNetV1B0,
     EfficientNetV1B1,

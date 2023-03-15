@@ -1,32 +1,16 @@
 import os
 
-is_tensorflow_backend = not "torch" in os.getenv("KECAM_BACKEND", "tensorflow").lower()
-
-if is_tensorflow_backend:
-    import tensorflow as tf
-    from tensorflow.keras import layers, models, initializers, callbacks
-    from tensorflow.keras.utils import register_keras_serializable, get_file
-    from keras_cv_attention_models import tf_functional as functional
-else:
-    from keras_cv_attention_models.pytorch_backend import layers, models, functional, initializers, callbacks
-    from keras_cv_attention_models.pytorch_backend.utils import register_keras_serializable, get_file
-
-    print(">>>> Using PyTorch backend")
+import tensorflow as tf
+from tensorflow.keras import layers, models, initializers, callbacks
+from tensorflow.keras.utils import register_keras_serializable, get_file
+from . import tf_functional as functional
 
 
 def backend():
-    if is_tensorflow_backend:
-        return tf.keras.backend.backend()
-    else:
-        return "pytorch"
-
+    return tf.keras.backend.backend()
 
 def image_data_format():
-    if is_tensorflow_backend:
-        return tf.keras.backend.image_data_format()
-    else:
-        return "channels_first"
-
+    return tf.keras.backend.image_data_format()
 
 __is_channels_last__ = image_data_format() == "channels_last"
 
@@ -71,11 +55,7 @@ def align_input_shape_by_image_data_format(input_shape):
 
 
 def in_train_phase(train_phase, eval_phase, training=None):
-    if is_tensorflow_backend:
-        return tf.keras.backend.in_train_phase(train_phase, eval_phase, training=training)
-    else:
-        return train_phase if training else eval_phase  # [TODO]
-
+    return tf.keras.backend.in_train_phase(train_phase, eval_phase, training=training)
 
 def numpy_image_resize(inputs, target_shape, method="bilinear", is_source_channels_last=True):
     ndims = len(inputs.shape)
